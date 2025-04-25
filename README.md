@@ -28,20 +28,6 @@
     Найдите папку `pdfjs-dist` в `node_modules`. Скопируйте файлы `pdf.mjs` и `pdf.worker.mjs` из `node_modules/pdfjs-dist/build/` в папку `public/js/pdfjs/build/` вашего проекта. Создайте эти папки (`public/js/pdfjs/build/`), если их нет.
 
 4.  **Создать файл конфигурации `.env`:**
-    Создайте файл `.env` в корне проекта и заполните его:
-    ```dotenv
-    # .env
-    PORT=3001
-    # Учетные данные для Basic Auth
-    BASIC_AUTH_USER=admin
-    BASIC_AUTH_PASSWORD=admin
-
-    # Настройки файлов
-    UPLOAD_DIR=./uploads
-    CV_FILENAME=cv.pdf
-    ```
-    **ВАЖНО:** Не добавляйте файл `.env` в систему контроля версий (он уже есть в `.gitignore`).
-
 5.  **Создать папку для загрузок:**
     Убедитесь, что папка `./uploads` существует в корне проекта. Node.js должен иметь права на запись в эту папку.
     ```bash
