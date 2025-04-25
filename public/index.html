@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Igors Volohovs - Full Stack Developer</title>
+    <title>Igors Volohovs - C/C++ Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +48,17 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* Simple styling for skill tags */
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0e7ff; /* bg-indigo-100 */
+            color: #4338ca; /* text-indigo-800 */
+            padding: 0.25rem 0.75rem; /* px-3 py-1 */
+            margin: 0.25rem; /* m-1 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+        }
     </style>
 </head>
 
@@ -78,18 +89,21 @@
             </div>
             <div class="md:w-3/4 md:text-left">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Igors Volohovs</h1>
-                <p class="text-xl md:text-2xl text-blue-600 font-semibold mb-4">Full Stack Developer</p>
+                <p class="text-xl md:text-2xl text-blue-600 font-semibold mb-4">C/C++ Developer</p>
                 <p class="text-gray-600 max-w-2xl mx-auto md:mx-0">
-                    Experienced Full Stack Developer based in Riga, Latvia. Passionate about creating efficient and scalable web solutions.
+                    Enthusiastic C/C++ Developer based in Riga, Latvia. Passionate about delving into tech challenges, continuous learning, and sharing knowledge.
                 </p>
                  <div class="mt-6 flex justify-center md:justify-start space-x-4">
                      <a href="mailto:igorsvolohovs@gmail.com" class="text-gray-500 hover:text-blue-600" aria-label="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                      </a>
+                     <a href="https://t.me/IgorsVolohovs" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" aria-label="Telegram">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.801c-.86-.38-1.83.1-2.315.918L3.01 19.471c-.6.98-.13 2.3.98 2.58 1.1.28 2.13-.4 2.54-1.43l1.86-4.66 4.03 3.21c.4.32.88.5 1.37.5.98 0 1.88-.6 2.24-1.53l4.17-11.02c.38-.99-.1-2.07-1.015-2.399zM6.18 20.99l11.6-14.48-9.1 7.27 1.86 4.66-4.36 2.55z"/></svg>
+                      </a>
                      <a href="https://github.com/igorsvolohovs" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" aria-label="GitHub">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                      </a>
-                     <a href="https://www.linkedin.com/in/igor-svolokhov-53976a185/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" aria-label="LinkedIn">
+                     <a href="https://www.linkedin.com/in/igors-volohovs-764850221/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                      </a>
                  </div>
@@ -99,109 +113,116 @@
         <section id="about" class="mb-16 scroll-mt-16">
             <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">About Me</h2>
             <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-                <p class="text-gray-700 leading-relaxed">
-                    I am a Full Stack Developer with experience in creating web applications using modern technologies. My background includes working with JavaScript (Node.js, Express, React), PHP (Laravel), databases (SQL, NoSQL), and cloud platforms like AWS. I am proficient in both front-end and back-end development, focusing on writing clean, efficient, and maintainable code. I enjoy tackling complex problems and continuously learning new technologies to improve my skills. I am a strong communicator and team player, capable of working effectively in collaborative environments. My goal is to contribute to innovative projects and deliver high-quality software solutions.
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    I am an enthusiastic learner with a keen interest in the latest IT technologies. My passion lies in delving deep into tech challenges and unraveling their complexities. I take pride in sharing my accumulated knowledge and experience with others, fostering a collaborative and innovative environment. My proactive approach to problem-solving and continuous learning makes me a valuable asset to any team.
                 </p>
+                 <h4 class="font-semibold text-gray-800 mb-2">Languages Spoken:</h4>
+                 <p class="text-gray-700">English, Latvian, Russian</p>
+                 <h4 class="font-semibold text-gray-800 mt-4 mb-2">Hobbies:</h4>
+                 <ul class="list-disc list-inside text-gray-700 space-y-1">
+                     <li>Assemble 3x3 to 7x7 Rubik's cubes</li>
+                     <li>Learn Mathematics</li>
+                     <li>Developing my own "Theory of effective thinking and task solving"</li>
+                 </ul>
             </div>
         </section>
 
         <section id="experience" class="mb-16 scroll-mt-16">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Experience</h2>
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Work Experience</h2>
             <div class="space-y-8 max-w-3xl mx-auto">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-blue-700">Full Stack Developer</h3>
-                    <p class="text-gray-600 font-medium">SIA WeAreDots</p>
-                    <p class="text-sm text-gray-500 mb-2">February 2022 – Present | Riga</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1">
-                        <li>Developed and maintained web applications using PHP (Laravel), JavaScript (React, Node.js), and various databases.</li>
-                        <li>Collaborated with cross-functional teams to define, design, and ship new features.</li>
-                        <li>Worked with AWS services for deployment and infrastructure management.</li>
-                        <li>Participated in code reviews and contributed to improving code quality and development processes.</li>
-                         <li>Integrated third-party APIs and services.</li>
-                    </ul>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-700">Research Engineering in Additive Lab</h3>
+                    <p class="text-gray-600 font-medium">Transport and Telecommunication Institute (TSI)</p>
+                    <p class="text-sm text-gray-500 mb-2">January 2024 – Present | Riga</p>
+                    <p class="text-gray-700 mb-2">
+                        Parallel acquisition, analysis, graphical display, and storage of data using UDP obtained from a YASKAWA welding robot utilizing WAAM (Wire Arc Additive Manufacturing) technology. This includes the Tones project work.
+                    </p>
+                    <p class="text-sm text-gray-600"><strong>Technologies used:</strong> C/C++23, MySQL, Qt Framework, Python, C#</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold text-blue-700">PHP Developer</h3>
-                    <p class="text-gray-600 font-medium">SIA Azeron</p>
-                    <p class="text-sm text-gray-500 mb-2">September 2021 – February 2022 | Ventspils (Remote)</p>
-                    <ul class="list-disc list-inside text-gray-700 space-y-1">
-                        <li>Developed and maintained e-commerce functionalities using PHP and related frameworks.</li>
-                        <li>Worked on database design and optimization (MySQL).</li>
-                        <li>Implemented front-end features using HTML, CSS, and JavaScript.</li>
-                        <li>Contributed to the development of internal tools and systems.</li>
-                    </ul>
+                    <h3 class="text-xl font-semibold text-blue-700">Software Developer (Medical Device)</h3>
+                    <p class="text-gray-600 font-medium">IDEAHUB (via TSI)</p> <p class="text-sm text-gray-500 mb-2">December 2022 – Present | Riga</p>
+                    <p class="text-gray-700 mb-2">
+                        Creation of software for a medical cell staining machine. Connected various sensors, motors, and network devices to STM32. Wrote a driver for a UART-USB module to enable communication between Raspberry Pi and multiple STM32 microcontrollers.
+                    </p>
+                     <p class="text-sm text-gray-600"><strong>Technologies used:</strong> C/C++11, STM32Cube IDE, Linux, Rust, SWIG</p>
                 </div>
-                 </div>
-        </section>
-
-        <section id="skills" class="mb-16 scroll-mt-16">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Skills</h2>
-            <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    <div>
-                        <h4 class="font-semibold text-blue-700 mb-2">Languages</h4>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>JavaScript (ES6+)</li>
-                            <li>PHP</li>
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>SQL</li>
-                            <li>Python (Basic)</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h4 class="font-semibold text-blue-700 mb-2">Frameworks/Libraries</h4>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Node.js</li>
-                            <li>Express.js</li>
-                            <li>React</li>
-                            <li>Laravel</li>
-                            <li>Tailwind CSS</li>
-                            <li>Bootstrap</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h4 class="font-semibold text-blue-700 mb-2">Databases</h4>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>MySQL</li>
-                            <li>PostgreSQL</li>
-                            <li>MongoDB</li>
-                            <li>Redis</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h4 class="font-semibold text-blue-700 mb-2">Tools & Platforms</h4>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Git / GitHub</li>
-                            <li>Docker</li>
-                            <li>AWS (EC2, S3, RDS)</li>
-                            <li>Nginx</li>
-                            <li>Linux/Unix</li>
-                            <li>Jira</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold text-blue-700 mb-2">Other</h4>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>REST APIs</li>
-                            <li>Agile/Scrum</li>
-                            <li>Problem Solving</li>
-                            <li>Teamwork</li>
-                         </ul>
-                    </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-700">Software Developer (ESF Project)</h3>
+                    <p class="text-gray-600 font-medium">Transport and Telecommunication Institute (TSI)</p>
+                    <p class="text-sm text-gray-500 mb-2">February 2023 – July 2023 | Riga</p>
+                     <p class="text-gray-700 mb-2">
+                        Created software for the mobile robot KOALA. Developed a user-friendly environment in C/C++ and Python for creating new projects for the robot.
+                    </p>
+                     <p class="text-sm text-gray-600"><strong>Technologies used:</strong> Make, C/C++11, Python, Linux</p>
                 </div>
             </div>
         </section>
 
+        <section id="skills" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Skills</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-center">
+                    <span class="skill-tag">C/C++ (11/14/17/20/23)</span>
+                    <span class="skill-tag">C#/.NET8</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Rust</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">SQLite</span>
+                    <span class="skill-tag">MS SQL</span>
+                    <span class="skill-tag">Qt Framework</span>
+                    <span class="skill-tag">ScottPlot</span>
+                    <span class="skill-tag">OpenGL</span>
+                    <span class="skill-tag">CMake</span>
+                    <span class="skill-tag">Make</span>
+                    <span class="skill-tag">Meson</span>
+                    <span class="skill-tag">Conan</span>
+                    <span class="skill-tag">SWIG</span>
+                    <span class="skill-tag">Git</span>
+                     <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">FreeRTOS</span>
+                    <span class="skill-tag">Visual Studio</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">STM32CubeIDE</span>
+                    <span class="skill-tag">Blender</span>
+                    <span class="skill-tag">EasyEDA</span>
+                    <span class="skill-tag">GTest</span>
+                    <span class="skill-tag">GBenchmark</span>
+                    <span class="skill-tag">Github Actions</span>
+                    <span class="skill-tag">Draw.io</span>
+                     <span class="skill-tag">Jira</span>
+                     <span class="skill-tag">Confluence</span>
+                     <span class="skill-tag">Mermaid</span>
+                     <span class="skill-tag">PlantUML</span>
+                    <span class="skill-tag">Gemini Advanced</span>
+                    <span class="skill-tag">Github Copilot</span>
+                    <span class="skill-tag">ChatGPT-4</span>
+                 </div>
+            </div>
+        </section>
+
         <section id="education" class="mb-16 scroll-mt-16">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Education</h2>
-             <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
-                 <h3 class="text-xl font-semibold text-blue-700">Bachelor's Degree in Computer Science</h3>
-                 <p class="text-gray-600 font-medium">Ventspils University College</p>
-                 <p class="text-sm text-gray-500 mb-2">2018 – 2022 | Ventspils, Latvia</p>
-                 <p class="text-gray-700">
-                     Focused on software development, algorithms, data structures, and web technologies. Completed relevant coursework and projects related to full-stack development.
-                 </p>
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Education & Courses</h2>
+             <div class="space-y-6 max-w-3xl mx-auto">
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                     <h3 class="text-xl font-semibold text-blue-700">Bachelor's Degree in Computer Science</h3>
+                     <p class="text-gray-600 font-medium">Transport and Telecommunication Institute (TSI)</p>
+                     <p class="text-sm text-gray-500 mb-2">2021 – Present | Riga, Latvia</p>
+                     <p class="text-gray-700">Continuing studies focused on software development, algorithms, data structures, and related computer science fields.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                     <h3 class="text-xl font-semibold text-blue-700">Completed Courses</h3>
+                     <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
+                         <li>C++ Developer (~300 tasks solved) - Yandex Practicum (2021)</li>
+                         <li>Basic Course for Network Management - ITLAT, Riga (2019)</li>
+                         <li>Basic Course of Java - ITLAT, Riga (2018)</li>
+                         <li>Basic Course of C/C++ - ITLAT, Riga (2017)</li>
+                     </ul>
+                </div>
             </div>
         </section>
 
@@ -235,17 +256,21 @@
                  </p>
                  <p class="mb-2">
                      <strong class="text-gray-800">Phone:</strong>
-                     <a href="tel:+37127881660" class="text-blue-600 hover:underline">+371 27881660</a>
+                     <a href="tel:+37127572829" class="text-blue-600 hover:underline">+371 27572829</a>
                  </p>
                  <p class="mb-4">
-                     <strong class="text-gray-800">Location:</strong> Riga, Latvia
+                     <strong class="text-gray-800">Address:</strong> 47 Pūces iela, Rīga, 1082, Latvia
                  </p>
                  <div class="flex justify-center space-x-6">
+                    <a href="https://t.me/IgorsVolohovs" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="Telegram Profile">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.198 2.801c-.86-.38-1.83.1-2.315.918L3.01 19.471c-.6.98-.13 2.3.98 2.58 1.1.28 2.13-.4 2.54-1.43l1.86-4.66 4.03 3.21c.4.32.88.5 1.37.5.98 0 1.88-.6 2.24-1.53l4.17-11.02c.38-.99-.1-2.07-1.015-2.399zM6.18 20.99l11.6-14.48-9.1 7.27 1.86 4.66-4.36 2.55z"/></svg>
+                         <span class="sr-only">Telegram</span>
+                     </a>
                      <a href="https://github.com/igorsvolohovs" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="GitHub Profile">
                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                          <span class="sr-only">GitHub</span>
                      </a>
-                     <a href="https://www.linkedin.com/in/igor-svolokhov-53976a185/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="LinkedIn Profile">
+                     <a href="https://www.linkedin.com/in/igors-volohovs-764850221/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="LinkedIn Profile">
                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                          <span class="sr-only">LinkedIn</span>
                      </a>
@@ -256,8 +281,7 @@
     </main>
 
     <footer class="bg-gray-800 text-white py-6 text-center">
-        <p>&copy; 2024 Igors Volohovs. All rights reserved.</p>
-        <p class="text-sm text-gray-400 mt-1">Powered by Node.js, Express, and Tailwind CSS</p>
+        <p>&copy; 2025 Igors Volohovs. All rights reserved.</p> <p class="text-sm text-gray-400 mt-1">Powered by Node.js, Express, and Tailwind CSS</p>
     </footer>
 
     <script src="/pdfjs/pdf.mjs" type="module"></script>
@@ -356,6 +380,7 @@
 
          /** Updates the state of the navigation buttons (disabled/enabled) */
         function updateNavButtons() {
+            if (!pdfDoc) return; // Exit if pdfDoc is not loaded
             prevPageBtn.disabled = (pageNum <= 1);
             nextPageBtn.disabled = (pageNum >= pdfDoc.numPages);
         }
@@ -372,7 +397,7 @@
 
         /** Displays next page. */
         function onNextPage() {
-            if (pageNum >= pdfDoc.numPages) {
+             if (!pdfDoc || pageNum >= pdfDoc.numPages) {
                 return;
             }
             pageNum++;
@@ -395,6 +420,7 @@
             errorMessage.classList.remove('hidden');
             // Hide controls if PDF fails to load
             document.getElementById('pdf-controls').style.display = 'none';
+            document.getElementById('pdf-viewer-container').style.display = 'none'; // Hide viewer area too
         });
 
     </script>
