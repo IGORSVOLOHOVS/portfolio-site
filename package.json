@@ -1,0 +1,29 @@
+{
+    "name": "portfolio-site-igors-volohovs",
+    "version": "1.0.0",
+    "description": "Personal portfolio website for Igors Volohovs",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js",
+      "dev": "nodemon app.js"
+    },
+    "keywords": [
+      "portfolio",
+      "cv",
+      "express",
+      "node"
+    ],
+    "author": "Igors Volohovs",
+    "license": "ISC",
+    "dependencies": {
+      "dotenv": "^16.4.5",
+      "express": "^4.19.2",
+      "express-basic-auth": "^1.2.1",
+      "multer": "^1.4.5-lts.1",
+      "pdfjs-dist": "^4.2.67"
+    },
+    "devDependencies": {
+      "nodemon": "^3.1.0"
+    }
+  }
+  

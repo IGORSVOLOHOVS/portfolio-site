@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Igors Volohovs</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключаем PDF.js -->
+    <!-- Убедитесь, что файлы pdf.mjs и pdf.worker.mjs находятся в public/js/pdfjs/build/ -->
+    <script type="importmap">
+        {
+          "imports": {
+            "pdfjs-dist": "./js/pdfjs/build/pdf.mjs"
+          }
+        }
+    </script>
+    <!-- Загружаем главный модуль PDF.js -->
+    <script type="module" src="./js/pdfjs/build/pdf.mjs"></script>
+</head>
+<body>
+    <header>
+        <h1>Портфолио Игоря Волоховса</h1>
+        <nav>
+            <a href="#cv">CV</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cv">
+            <h2>Резюме (CV)</h2>
+            <div class="controls">
+                 <!-- Кнопка скачивания -->
+                 <a href="/download" class="button" download>Скачать CV (PDF)</a>
+            </div>
+            <!-- Контейнер для рендеринга PDF -->
+            <div id="pdf-viewer-container">
+                <p>Загрузка PDF...</p>
+                <!-- Сюда PDF.js будет рендерить страницы -->
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Контакты</h2>
+            <div class="contact-info">
+                <!-- Замените src на путь к вашему фото -->
+                <img src="images/photo.jpg" alt="Фото Игоря Волоховса" class="owner-photo">
+                <div>
+                    <p><strong>Имя:</strong> Igors Volohovs</p>
+                    <!-- Замените на ваш реальный email -->
+                    <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                    <!-- Добавьте телефон, если нужно -->
+                    <!-- <p><strong>Телефон:</strong> +XXX (XXX) XXX-XX-XX</p> -->
+                    <p>
+                        <strong>Профили:</strong>
+                        <!-- Замените на ваши реальные ссылки -->
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <!-- Добавьте другие ссылки при необходимости -->
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Igors Volohovs</p>
+    </footer>
+
+    <!-- Наш скрипт для рендеринга PDF -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

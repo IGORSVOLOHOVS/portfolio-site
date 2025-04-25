@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обновить CV - Igors Volohovs</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Ссылка на общие стили -->
+</head>
+<body>
+    <header>
+        <h1>Обновление CV</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Загрузить новый файл CV (только PDF)</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+                <div>
+                    <label for="cvfile">Выберите PDF файл:</label>
+                    <input type="file" id="cvfile" name="cvfile" accept=".pdf" required>
+                </div>
+                <div>
+                    <input type="submit" value="Загрузить и Обновить">
+                </div>
+            </form>
+             <p style="margin-top: 30px; text-align: center;"><a href="/">Вернуться на главную страницу</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Igors Volohovs</p>
+    </footer>
+</body>
+</html>

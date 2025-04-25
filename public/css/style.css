@@ -1,0 +1,256 @@
+/* public/css/style.css */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2c3e50; /* Темно-синий */
+    color: #ecf0f1; /* Светлый */
+    padding: 1.2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 300;
+}
+
+nav {
+    margin-top: 0.5rem;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+nav a:hover, nav a:focus {
+    border-color: #3498db; /* Голубой акцент */
+    outline: none;
+}
+
+main {
+    flex: 1; /* Занимает все доступное пространство */
+    max-width: 960px;
+    width: 95%;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    border-radius: 8px;
+}
+
+section {
+    padding: 25px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    color: #2c3e50; /* Темно-синий */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+#pdf-viewer-container canvas {
+    /* Стили для canvas теперь задаются в JS, но можно оставить базовые */
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+#pdf-viewer-container p { /* Стили для сообщений загрузки/ошибки */
+    text-align: center;
+    padding: 30px;
+    font-style: italic;
+    color: #555;
+}
+
+
+.controls {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.button,
+input[type="submit"] { /* Общий стиль для кнопок */
+    display: inline-block;
+    background-color: #3498db; /* Голубой */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.button:hover,
+input[type="submit"]:hover {
+    background-color: #2980b9; /* Темнее голубой */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.button:focus,
+input[type="submit"]:focus {
+    outline: 2px solid #a9d8f5; /* Обводка при фокусе */
+    outline-offset: 2px;
+}
+
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap; /* Перенос на новую строку на малых экранах */
+    align-items: center;
+    gap: 25px; /* Пространство между элементами */
+}
+
+.owner-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Круглое фото */
+    object-fit: cover; /* Масштабирует изображение */
+    border: 3px solid #ecf0f1; /* Светлая рамка */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact-info div p { /* Стили для текста контактов */
+    margin: 8px 0;
+}
+.contact-info div p strong {
+    margin-right: 5px;
+    color: #555;
+}
+.contact-info div p a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-info div p a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+
+footer {
+    text-align: center;
+    margin-top: 30px; /* Отступ от main */
+    padding: 1.5rem 0;
+    background-color: #34495e; /* Темнее серо-синий */
+    color: #bdc3c7; /* Светло-серый */
+    font-size: 0.9em;
+}
+
+/* Стили для формы загрузки */
+.upload-form {
+    margin-top: 20px;
+    padding: 25px;
+    border: 1px solid #ddd;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    max-width: 500px; /* Ограничиваем ширину формы */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upload-form div {
+    margin-bottom: 15px;
+}
+
+.upload-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.upload-form input[type="file"] {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 22px); /* Учитываем padding и border */
+}
+
+.upload-form input[type="file"]::file-selector-button {
+    background-color: #ecf0f1;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+.upload-form input[type="file"]::file-selector-button:hover {
+     background-color: #dadedf;
+}
+
+
+/* Стили для страницы успеха */
+.success-message {
+    padding: 25px;
+    background-color: #e8f5e9; /* Светло-зеленый */
+    border: 1px solid #c8e6c9; /* Зеленая рамка */
+    color: #2e7d32; /* Темно-зеленый текст */
+    border-radius: 8px;
+    text-align: center;
+    max-width: 600px;
+    margin: 20px auto;
+}
+.success-message p {
+    margin: 10px 0;
+}
+.success-message a {
+    color: #1b5e20; /* Еще темнее зеленый для ссылки */
+    font-weight: bold;
+    text-decoration: underline;
+}
+.success-message a:hover {
+    text-decoration: none;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    main {
+        padding: 15px;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    nav a {
+        margin: 0 10px;
+    }
+    .contact-info {
+        flex-direction: column; /* Фото над текстом */
+        text-align: center;
+    }
+    .owner-photo {
+        width: 100px;
+        height: 100px;
+    }
+    .upload-form {
+        padding: 20px;
+    }
+}
