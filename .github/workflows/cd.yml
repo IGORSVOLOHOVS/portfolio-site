@@ -1,0 +1,87 @@
+# Имя рабочего процесса
+name: Node.js CD
+
+# Запускать только при push в ветку main
+on:
+  push:
+    branches: [ main ]
+
+# Задачи
+jobs:
+  # Задача развертывания
+  deploy:
+    # Запускать только если задача 'build' из 'ci.yml' (или другого CI воркфлоу) успешно завершилась
+    # Убедись, что имя задачи CI ('build' в примере ci.yml) совпадает
+    # needs: build # Раскомментируй, если у тебя есть CI воркфлоу с job 'build', от которого зависит CD
+
+    # Операционная система
+    runs-on: ubuntu-latest
+
+    # Шаги развертывания
+    steps:
+    # 1. Клонирование репозитория
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2. Настройка Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x # Используй актуальную для твоего проекта версию Node.js
+        cache: 'npm'
+
+    # 3. Установка зависимостей (включая devDependencies, если они нужны для сборки)
+    - name: Install dependencies
+      run: npm ci
+
+    # 4. Сборка проекта (если требуется)
+    # - name: Build project
+    #   run: npm run build --if-present
+
+    # 5. Развертывание (!!! ЭТО ПРИМЕР - АДАПТИРУЙ ПОД СВОЙ ХОСТИНГ !!!)
+    # Тебе нужно заменить этот шаг на команды, специфичные для твоего хостинга.
+    # Не забудь настроить СЕКРЕТЫ в настройках репозитория GitHub (Settings -> Secrets and variables -> Actions)
+    # Никогда не храни учетные данные (пароли, ключи API, SSH ключи) прямо в коде!
+
+    # Пример 1: Развертывание через SSH/SCP (на свой сервер)
+    # - name: Deploy using SCP
+    #   uses: appleboy/scp-action@master
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }} # Секрет: IP или домен сервера
+    #     username: ${{ secrets.SSH_USERNAME }} # Секрет: Имя пользователя на сервере
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }} # Секрет: Приватный SSH ключ
+    #     port: ${{ secrets.SSH_PORT || 22 }} # Секрет: Порт SSH (по умолчанию 22)
+    #     source: "." # Какие файлы/папки копировать (можно указать конкретные, например "dist/,app.js,package.json,public/")
+    #     target: "/var/www/your-portfolio-app" # Путь на сервере, куда копировать файлы
+    #     strip_components: 1 # Опционально: убрать первый компонент пути из source
+
+    # Пример 2: Развертывание на Heroku
+    # - name: Deploy to Heroku
+    #   uses: akhileshns/heroku-deploy@v3.12.12 # Или другой актуальный action
+    #   with:
+    #     heroku_api_key: ${{ secrets.HEROKU_API_KEY }} # Секрет: API ключ Heroku
+    #     heroku_app_name: "your-heroku-app-name" # Секрет или прямое имя приложения Heroku
+    #     heroku_email: ${{ secrets.HEROKU_EMAIL }} # Секрет: Email аккаунта Heroku
+
+    # Пример 3: Развертывание на Render
+    # Render обычно использует Deploy Hooks. Настрой Deploy Hook в Render
+    # и вызови его с помощью curl в этом шаге.
+    # - name: Trigger Render Deploy Hook
+    #   run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }} # Секрет: URL Deploy Hook из Render
+
+    # 6. Перезапуск приложения на сервере (если используется SSH/SCP)
+    # Этот шаг нужен, если ты копируешь файлы на свой сервер вручную
+    # - name: Restart application on server
+    #   uses: appleboy/ssh-action@master
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     port: ${{ secrets.SSH_PORT || 22 }}
+    #     script: | # Команды для выполнения на сервере
+    #       cd /var/www/your-portfolio-app
+    #       npm install --production # Установить только production зависимости
+    #       pm2 restart your-app-name # Перезапустить приложение через PM2 (или systemctl, docker-compose и т.д.)
+
+    - name: Deployment Placeholder
+      run: echo "Deployment step needs to be configured based on your hosting provider. See comments in cd.yml."

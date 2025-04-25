@@ -1,0 +1,61 @@
+# Имя рабочего процесса (отображается в GitHub Actions)
+name: Node.js CI
+
+# События, которые запускают этот рабочий процесс
+on:
+  # Запускать при push в ветку main
+  push:
+    branches: [ main ]
+  # Запускать при pull request в ветку main
+  pull_request:
+    branches: [ main ]
+
+# Задачи, которые будут выполняться
+jobs:
+  # Имя задачи (может быть любым)
+  build:
+    # Операционная система, на которой будет выполняться задача
+    runs-on: ubuntu-latest
+
+    # Стратегия (если нужно тестировать на разных версиях Node)
+    strategy:
+      matrix:
+        # Укажи версии Node.js, на которых нужно тестировать
+        node-version: [18.x, 20.x] # Можно использовать одну или несколько версий
+
+    # Шаги, выполняемые в рамках задачи
+    steps:
+    # 1. Клонирование репозитория
+    - name: Checkout repository
+      uses: actions/checkout@v4 # Используем стандартное действие для клонирования
+
+    # 2. Настройка Node.js
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm' # Включаем кеширование npm зависимостей для ускорения
+
+    # 3. Установка зависимостей
+    # Используем 'npm ci' для установки точных версий из package-lock.json
+    # Это быстрее и надежнее для CI, чем 'npm install'
+    - name: Install dependencies
+      run: npm ci
+
+    # 4. Сборка проекта (если требуется)
+    # Если твой проект требует шага сборки (например, TypeScript -> JavaScript), добавь его сюда
+    # - name: Build project
+    #   run: npm run build --if-present # Запускает 'npm run build', если скрипт 'build' есть в package.json
+
+    # 5. Запуск линтера (рекомендуется)
+    # Если ты используешь ESLint или другой линтер, добавь шаг для его запуска
+    # Убедись, что линтер добавлен в devDependencies в package.json
+    # - name: Run linter (e.g., ESLint)
+    #   run: npm run lint --if-present # Запускает 'npm run lint', если скрипт есть
+
+    # 6. Запуск тестов (если есть)
+    # Если у тебя есть тесты, добавь шаг для их запуска
+    # - name: Run tests
+    #   run: npm test --if-present # Запускает 'npm test', если скрипт есть
+
+    # Дополнительные шаги проверки можно добавить здесь
