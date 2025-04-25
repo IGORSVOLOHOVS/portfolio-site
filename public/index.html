@@ -1,73 +1,403 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио - Igors Volohovs</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Подключаем PDF.js -->
-    <!-- Убедитесь, что файлы pdf.mjs и pdf.worker.mjs находятся в public/js/pdfjs/build/ -->
-    <script type="importmap">
-        {
-          "imports": {
-            "pdfjs-dist": "./js/pdfjs/build/pdf.mjs"
-          }
+    <title>Igors Volohovs - Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
         }
-    </script>
-    <!-- Загружаем главный модуль PDF.js -->
-    <script type="module" src="./js/pdfjs/build/pdf.mjs"></script>
+        /* Style for the PDF viewer container */
+        #pdf-viewer-container {
+             width: 100%;
+             height: 80vh; /* Adjust height as needed */
+             border: 1px solid #ccc;
+             overflow: auto; /* Add scrollbars if content overflows */
+             margin-top: 1rem; /* Add some space above the viewer */
+        }
+        #pdf-canvas {
+            display: block; /* Ensure canvas behaves like a block element */
+            margin: 0 auto; /* Center canvas horizontally if needed */
+        }
+        /* Add some basic styling for loading/error messages */
+        #loading-message, #error-message {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #555;
+        }
+         /* Simple spinner */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Портфолио Игоря Волоховса</h1>
-        <nav>
-            <a href="#cv">CV</a>
-            <a href="#contact">Контакты</a>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">Igors Volohovs</div>
+            <div class="space-x-4">
+                <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-600">Experience</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-600">Skills</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-600">Education</a>
+                <a href="#cv" class="text-gray-600 hover:text-blue-600">CV (PDF)</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section id="cv">
-            <h2>Резюме (CV)</h2>
-            <div class="controls">
-                 <!-- Кнопка скачивания -->
-                 <a href="/download" class="button" download>Скачать CV (PDF)</a>
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="hero" class="text-center mb-16 flex flex-col md:flex-row items-center pt-10">
+             <div class="md:w-1/4 mb-6 md:mb-0 md:mr-8">
+                <img src="/images/photo.jpg"
+                     alt="Placeholder for Igors Volohovs photo"
+                     class="rounded-full mx-auto shadow-lg w-40 h-40 md:w-48 md:h-48 object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/200x200/E2E8F0/AAAAAA?text=Image+Error';">
             </div>
-            <!-- Контейнер для рендеринга PDF -->
-            <div id="pdf-viewer-container">
-                <p>Загрузка PDF...</p>
-                <!-- Сюда PDF.js будет рендерить страницы -->
+            <div class="md:w-3/4 md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Igors Volohovs</h1>
+                <p class="text-xl md:text-2xl text-blue-600 font-semibold mb-4">Full Stack Developer</p>
+                <p class="text-gray-600 max-w-2xl mx-auto md:mx-0">
+                    Experienced Full Stack Developer based in Riga, Latvia. Passionate about creating efficient and scalable web solutions.
+                </p>
+                 <div class="mt-6 flex justify-center md:justify-start space-x-4">
+                     <a href="mailto:igorsvolohovs@gmail.com" class="text-gray-500 hover:text-blue-600" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                     </a>
+                     <a href="https://github.com/igorsvolohovs" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                     </a>
+                     <a href="https://www.linkedin.com/in/igor-svolokhov-53976a185/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                     </a>
+                 </div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2>Контакты</h2>
-            <div class="contact-info">
-                <!-- Замените src на путь к вашему фото -->
-                <img src="images/photo.jpg" alt="Фото Игоря Волоховса" class="owner-photo">
-                <div>
-                    <p><strong>Имя:</strong> Igors Volohovs</p>
-                    <!-- Замените на ваш реальный email -->
-                    <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-                    <!-- Добавьте телефон, если нужно -->
-                    <!-- <p><strong>Телефон:</strong> +XXX (XXX) XXX-XX-XX</p> -->
-                    <p>
-                        <strong>Профили:</strong>
-                        <!-- Замените на ваши реальные ссылки -->
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <!-- Добавьте другие ссылки при необходимости -->
-                    </p>
+        <section id="about" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">About Me</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+                <p class="text-gray-700 leading-relaxed">
+                    I am a Full Stack Developer with experience in creating web applications using modern technologies. My background includes working with JavaScript (Node.js, Express, React), PHP (Laravel), databases (SQL, NoSQL), and cloud platforms like AWS. I am proficient in both front-end and back-end development, focusing on writing clean, efficient, and maintainable code. I enjoy tackling complex problems and continuously learning new technologies to improve my skills. I am a strong communicator and team player, capable of working effectively in collaborative environments. My goal is to contribute to innovative projects and deliver high-quality software solutions.
+                </p>
+            </div>
+        </section>
+
+        <section id="experience" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Experience</h2>
+            <div class="space-y-8 max-w-3xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-700">Full Stack Developer</h3>
+                    <p class="text-gray-600 font-medium">SIA WeAreDots</p>
+                    <p class="text-sm text-gray-500 mb-2">February 2022 – Present | Riga</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Developed and maintained web applications using PHP (Laravel), JavaScript (React, Node.js), and various databases.</li>
+                        <li>Collaborated with cross-functional teams to define, design, and ship new features.</li>
+                        <li>Worked with AWS services for deployment and infrastructure management.</li>
+                        <li>Participated in code reviews and contributed to improving code quality and development processes.</li>
+                         <li>Integrated third-party APIs and services.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-blue-700">PHP Developer</h3>
+                    <p class="text-gray-600 font-medium">SIA Azeron</p>
+                    <p class="text-sm text-gray-500 mb-2">September 2021 – February 2022 | Ventspils (Remote)</p>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Developed and maintained e-commerce functionalities using PHP and related frameworks.</li>
+                        <li>Worked on database design and optimization (MySQL).</li>
+                        <li>Implemented front-end features using HTML, CSS, and JavaScript.</li>
+                        <li>Contributed to the development of internal tools and systems.</li>
+                    </ul>
+                </div>
+                 </div>
+        </section>
+
+        <section id="skills" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Skills</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div>
+                        <h4 class="font-semibold text-blue-700 mb-2">Languages</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>JavaScript (ES6+)</li>
+                            <li>PHP</li>
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>SQL</li>
+                            <li>Python (Basic)</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-blue-700 mb-2">Frameworks/Libraries</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Node.js</li>
+                            <li>Express.js</li>
+                            <li>React</li>
+                            <li>Laravel</li>
+                            <li>Tailwind CSS</li>
+                            <li>Bootstrap</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-blue-700 mb-2">Databases</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>MySQL</li>
+                            <li>PostgreSQL</li>
+                            <li>MongoDB</li>
+                            <li>Redis</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-semibold text-blue-700 mb-2">Tools & Platforms</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Git / GitHub</li>
+                            <li>Docker</li>
+                            <li>AWS (EC2, S3, RDS)</li>
+                            <li>Nginx</li>
+                            <li>Linux/Unix</li>
+                            <li>Jira</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-blue-700 mb-2">Other</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>REST APIs</li>
+                            <li>Agile/Scrum</li>
+                            <li>Problem Solving</li>
+                            <li>Teamwork</li>
+                         </ul>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <section id="education" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Education</h2>
+             <div class="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+                 <h3 class="text-xl font-semibold text-blue-700">Bachelor's Degree in Computer Science</h3>
+                 <p class="text-gray-600 font-medium">Ventspils University College</p>
+                 <p class="text-sm text-gray-500 mb-2">2018 – 2022 | Ventspils, Latvia</p>
+                 <p class="text-gray-700">
+                     Focused on software development, algorithms, data structures, and web technologies. Completed relevant coursework and projects related to full-stack development.
+                 </p>
+            </div>
+        </section>
+
+        <section id="cv" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">CV (PDF Document)</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+                <p class="text-center text-gray-600 mb-4">You can view the full CV document below or <a href="/uploads/cv.pdf" target="_blank" class="text-blue-600 hover:underline">download it here</a>.</p>
+                <div id="pdf-controls" class="text-center mb-4 space-x-2">
+                    <button id="prev-page" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">Previous</button>
+                    <span class="mx-2">Page: <span id="page-num"></span> / <span id="page-count"></span></span>
+                    <button id="next-page" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">Next</button>
+                </div>
+                <div id="loading-message">
+                    <div class="loader"></div>
+                    Loading PDF...
+                </div>
+                 <div id="error-message" class="text-red-600 hidden"></div>
+                <div id="pdf-viewer-container" class="bg-gray-200">
+                    <canvas id="pdf-canvas"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="mb-16 scroll-mt-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Contact</h2>
+            <div class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto text-center">
+                 <p class="text-gray-700 mb-4">Feel free to reach out if you'd like to discuss a project or opportunity.</p>
+                 <p class="mb-2">
+                     <strong class="text-gray-800">Email:</strong>
+                     <a href="mailto:igorsvolohovs@gmail.com" class="text-blue-600 hover:underline">igorsvolohovs@gmail.com</a>
+                 </p>
+                 <p class="mb-2">
+                     <strong class="text-gray-800">Phone:</strong>
+                     <a href="tel:+37127881660" class="text-blue-600 hover:underline">+371 27881660</a>
+                 </p>
+                 <p class="mb-4">
+                     <strong class="text-gray-800">Location:</strong> Riga, Latvia
+                 </p>
+                 <div class="flex justify-center space-x-6">
+                     <a href="https://github.com/igorsvolohovs" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="GitHub Profile">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                         <span class="sr-only">GitHub</span>
+                     </a>
+                     <a href="https://www.linkedin.com/in/igor-svolokhov-53976a185/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600 transition duration-300" aria-label="LinkedIn Profile">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                         <span class="sr-only">LinkedIn</span>
+                     </a>
+                 </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <p>&copy; 2025 Igors Volohovs</p>
+    <footer class="bg-gray-800 text-white py-6 text-center">
+        <p>&copy; 2024 Igors Volohovs. All rights reserved.</p>
+        <p class="text-sm text-gray-400 mt-1">Powered by Node.js, Express, and Tailwind CSS</p>
     </footer>
 
-    <!-- Наш скрипт для рендеринга PDF -->
-    <script type="module" src="js/main.js"></script>
+    <script src="/pdfjs/pdf.mjs" type="module"></script>
+
+    <script type="module">
+        // Ensure the workerSrc path is correct relative to your project structure
+        const workerSrc = '/pdfjs/pdf.worker.mjs';
+
+        // Get PDF.js library using dynamic import
+        const { getDocument, GlobalWorkerOptions } = await import('/pdfjs/pdf.mjs');
+        GlobalWorkerOptions.workerSrc = workerSrc;
+
+        // DOM Elements
+        const pdfViewerContainer = document.getElementById('pdf-viewer-container');
+        const canvas = document.getElementById('pdf-canvas');
+        const ctx = canvas.getContext('2d');
+        const prevPageBtn = document.getElementById('prev-page');
+        const nextPageBtn = document.getElementById('next-page');
+        const pageNumSpan = document.getElementById('page-num');
+        const pageCountSpan = document.getElementById('page-count');
+        const loadingMessage = document.getElementById('loading-message');
+        const errorMessage = document.getElementById('error-message');
+
+        // State variables
+        let pdfDoc = null;
+        let pageNum = 1;
+        let pageRendering = false;
+        let pageNumPending = null;
+        const scale = 1.5; // Adjust scale for better resolution
+
+        /**
+         * Get page info from document, resize canvas accordingly, and render page.
+         * @param num Page number.
+         */
+        function renderPage(num) {
+            pageRendering = true;
+            loadingMessage.style.display = 'block'; // Show loader during rendering
+            errorMessage.textContent = ''; // Clear previous errors
+            errorMessage.classList.add('hidden');
+
+            // Using promise to fetch the page
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({ scale: scale });
+                // Set canvas dimensions to match the PDF page size
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                 // Adjust container width if needed, or ensure canvas fits container
+                 // pdfViewerContainer.style.width = `${viewport.width}px`; // Optional: Resize container
+
+                // Render PDF page into canvas context
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                const renderTask = page.render(renderContext);
+
+                // Wait for rendering to finish
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    loadingMessage.style.display = 'none'; // Hide loader
+                    if (pageNumPending !== null) {
+                        // New page rendering is pending
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                     // Update page counters
+                    pageNumSpan.textContent = num;
+                    updateNavButtons();
+                }).catch(handleRenderError);
+            }).catch(handleRenderError);
+        }
+
+        /** Handles errors during page fetching or rendering */
+        function handleRenderError(error) {
+             console.error('Error rendering PDF page:', error);
+             pageRendering = false;
+             loadingMessage.style.display = 'none';
+             errorMessage.textContent = `Error rendering page ${pageNum}: ${error.message || 'Unknown error'}`;
+             errorMessage.classList.remove('hidden');
+             updateNavButtons(); // Ensure buttons are updated even on error
+        }
+
+
+        /**
+         * If another page rendering in progress, waits until the rendering is
+         * finished. Otherwise, executes rendering immediately.
+         */
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+         /** Updates the state of the navigation buttons (disabled/enabled) */
+        function updateNavButtons() {
+            prevPageBtn.disabled = (pageNum <= 1);
+            nextPageBtn.disabled = (pageNum >= pdfDoc.numPages);
+        }
+
+        /** Displays previous page. */
+        function onPrevPage() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        }
+        prevPageBtn.addEventListener('click', onPrevPage);
+
+        /** Displays next page. */
+        function onNextPage() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        }
+        nextPageBtn.addEventListener('click', onNextPage);
+
+        /** Asynchronously downloads PDF. */
+        const url = '/uploads/cv.pdf'; // Path to your CV PDF file
+        getDocument(url).promise.then(function(pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            pageCountSpan.textContent = pdfDoc.numPages;
+            // Initial page rendering
+            renderPage(pageNum);
+        }).catch(function (error) {
+            // PDF loading error
+            console.error('Error loading PDF:', error);
+            loadingMessage.style.display = 'none';
+            errorMessage.textContent = `Failed to load PDF: ${error.message || 'Check console for details.'}`;
+            errorMessage.classList.remove('hidden');
+            // Hide controls if PDF fails to load
+            document.getElementById('pdf-controls').style.display = 'none';
+        });
+
+    </script>
+
 </body>
 </html>

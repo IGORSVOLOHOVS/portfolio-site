@@ -1,81 +1,114 @@
-# Сайт-Портфолио - Igors Volohovs
+# Portfolio Site - CV Viewer & Uploader
 
-Простой персональный сайт-портфолио для отображения CV из PDF файла, с возможностью скачивания и обновления файла владельцем. Реализован на Node.js/Express.
+This is a simple Node.js/Express web application designed to display a professional portfolio based on a CV and allow the owner to update the CV file securely.
 
-## Технологии
+## Features
 
-*   **Backend:** Node.js, Express.js
-*   **Frontend:** HTML, CSS, JavaScript, PDF.js
-*   **Аутентификация (для обновления):** HTTP Basic Authentication
-*   **Обработка загрузок:** Multer
-*   **Конфигурация:** dotenv
+* **Professional Portfolio Display:** Presents information extracted from a CV (About Me, Experience, Skills, Education, Contact) in a clean, responsive HTML format using Tailwind CSS.
+* **PDF CV Viewer:** Integrates PDF.js to allow visitors to view the original CV document directly on the website.
+* **Secure CV Upload:** Provides a password-protected route (`/upload`) for the site owner to upload a new `cv.pdf` file, replacing the existing one. Uses session-based authentication.
+* **Environment Variable Configuration:** Uses a `.env` file for sensitive information like login credentials and session secrets.
+* **Responsive Design:** Built with Tailwind CSS for optimal viewing on various devices.
 
+## Project Structure
 
-## Установка и Запуск
+```
+portfolio-site/
+│
+├── public/                 # Static assets served to the client
+│   ├── uploads/            # Directory for the CV PDF file
+│   │   └── cv.pdf          # The CV file displayed and replaced
+│   ├── js/                 # Frontend JavaScript (if any besides PDF viewer)
+│   │   └── (main.js - if needed)
+│   └── index.html          # Main portfolio page HTML
+│
+├── views/                  # EJS (or other engine) view templates
+│   ├── login.ejs           # Login form page
+│   ├── upload_form.ejs     # CV upload form page
+│   └── upload_success.ejs  # Success message page after upload
+│
+├── routes/                 # Express route definitions
+│   └── cvRoutes.js         # Handles all application routes
+│
+├── middleware/             # Custom Express middleware
+│   └── auth.js             # Authentication check middleware
+│
+├── node_modules/           # Node.js dependencies (created by npm install)
+│   └── pdfjs-dist/         # PDF.js library files
+│
+├── .env                    # Environment variables (MUST be created)
+├── .gitignore              # Specifies intentionally untracked files
+├── app.js                  # Main application entry point
+├── package.json            # Project metadata and dependencies
+├── package-lock.json       # Exact dependency versions
+└── README.md               # This file
+```
 
-1.  **Клонировать репозиторий:**
+## Setup and Installation
+
+1.  **Clone the Repository:**
     ```bash
-    git clone <url-вашего-репозитория>
+    git clone <your-repository-url>
     cd portfolio-site
     ```
 
-2.  **Установить зависимости:**
+2.  **Install Dependencies:**
     ```bash
     npm install
     ```
+    This will install Express, Multer, PDF.js, EJS, dotenv, express-session, and other necessary packages.
 
-3.  **Скопировать файлы PDF.js:**
-    Найдите папку `pdfjs-dist` в `node_modules`. Скопируйте файлы `pdf.mjs` и `pdf.worker.mjs` из `node_modules/pdfjs-dist/build/` в папку `public/js/pdfjs/build/` вашего проекта. Создайте эти папки (`public/js/pdfjs/build/`), если их нет.
+3.  **Create Environment File:**
+    Create a file named `.env` in the root directory of the project and add the following variables
 
-4.  **Создать файл конфигурации `.env`:**
-5.  **Создать папку для загрузок:**
-    Убедитесь, что папка `./uploads` существует в корне проекта. Node.js должен иметь права на запись в эту папку.
+4.  **Place Initial CV:**
+    Place your CV file named `cv.pdf` inside the `public/uploads/` directory. If the directory doesn't exist, create it.
+
+5.  **Add Your Photo (Optional but Recommended):**
+    Replace the placeholder image link in `public/index.html` with the path to your actual photo. For example, if you place `photo.jpg` in a new `public/images/` folder:
+    * Create `public/images/` directory.
+    * Add your `photo.jpg` file there.
+    * Change the `<img>` tag's `src` in `public/index.html` from the `placehold.co` URL to `/images/photo.jpg`.
+
+## Running the Application
+
+1.  **Development Mode (with automatic restart on file changes):**
     ```bash
-    mkdir uploads
+    npm run dev
     ```
-    (Если папка уже создана шагом 2 в `routes/cvRoutes.js`, этот шаг можно пропустить).
+    Requires `nodemon` installed (`npm install -g nodemon` or use `npx nodemon app.js`).
 
-6.  **Добавить фото:**
-    Поместите ваше фото (например, `photo.jpg`) в папку `public/images/`. Убедитесь, что имя файла совпадает с тем, что указано в `public/index.html`.
+2.  **Production Mode:**
+    ```bash
+    npm start
+    ```
 
-7.  **Запустить приложение:**
-    *   Для разработки (с `nodemon`, если установлен):
-        ```bash
-        npm run dev
-        ```
-    *   Обычный запуск:
-        ```bash
-        npm start
-        ```
-    *   Используя PM2 (рекомендуется для сервера):
-        ```bash
-        # npm install pm2 -g # Установить PM2 глобально, если нужно
-        pm2 start app.js --name portfolio-igors-volohovs
-        # pm2 list
-        # pm2 logs portfolio-igors-volohovs
-        ```
+The application will be accessible at `http://localhost:3001` (or the port specified in your `.env` file).
 
-8.  **Открыть сайт:**
-    *   Главная страница: `http://localhost:3001` (или IP вашего сервера)
-    *   Страница обновления CV: `http://localhost:3001/upload` 
+## Usage
 
-## Как обновить CV
+* **View Portfolio:** Navigate to the root URL (`/`).
+* **View Full CV:** Click the "CV (PDF)" link or scroll down to the PDF viewer section. You can also download the PDF.
+* **Update CV:**
+    1.  Navigate to `/login`.
+    2.  Upon successful login, you will be redirected to `/upload`.
+    3.  Choose your new CV file (must be a PDF).
+    4.  Click "Upload CV". The file will replace `public/uploads/cv.pdf`.
+    5.  You can log out using the "Log Out" link/button.
 
-1.  Перейдите по адресу `/upload` вашего сайта (`http://localhost:3001/upload`).
-2.  Браузер запросит логин и пароль.
-3.  Нажмите "Выберите файл", выберите новый PDF-файл вашего CV.
-4.  Нажмите "Загрузить и Обновить".
-5.  Старый файл `cv.pdf` в папке `uploads` будет заменен новым.
-6.  Посетители сайта увидят обновленное CV (может потребоваться обновить страницу или очистить кэш браузера).
+## Key Technologies Used
 
-## Дальнейшие шаги
+* **Node.js:** JavaScript runtime environment.
+* **Express.js:** Web application framework for Node.js.
+* **Tailwind CSS:** Utility-first CSS framework for styling.
+* **PDF.js:** Library by Mozilla for rendering PDF files in the browser using HTML5 Canvas.
+* **Multer:** Middleware for handling `multipart/form-data`, used for file uploads.
+* **Express Session:** Middleware for session management (authentication).
+* **EJS:** Templating engine (used for login/upload/success pages).
+* **dotenv:** Module to load environment variables from a `.env` file.
 
-*   **HTTPS:** Настроить HTTPS (Let's Encrypt).
-*   **Контакты:** Заполнить реальные контактные данные и ссылки в `public/index.html`.
-*   **Безопасность:** Усилить безопасность сервера (брандмауэр, обновления).
-*   **CI/CD:** Настроить GitHub Actions для автоматического развертывания.
-*   **Docker:** Контейнеризировать приложение.
-*   **Тесты:** Написать тесты.
+## Notes
 
-
-
+* **Security:** Ensure your `ADMIN_PASSWORD` and `SESSION_SECRET` in the `.env` file are strong and kept private. Do not commit the `.env` file to version control (it should be listed in `.gitignore`). For production deployments, always use HTTPS to protect session cookies and login credentials.
+* **PDF Content:** The HTML sections (About, Experience, etc.) are currently hardcoded based on the initial CV provided. If you upload a new CV with significantly different content, you will need to manually update the content within `public/index.html` to reflect the changes accurately. The PDF viewer will always show the content of the currently uploaded `cv.pdf`.
+* **Error Handling:** Basic error handling is implemented, but can be further enhanced for production environments.
